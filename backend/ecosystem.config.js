@@ -8,6 +8,7 @@ const {
   DEPLOY_PATH,
   DEPLOY_REPO,
   DEPLOY_REF,
+  DEPLOY_KEY,
 } = process.env;
 
 module.exports = {
@@ -24,6 +25,7 @@ module.exports = {
       path: DEPLOY_PATH,
       repo: DEPLOY_REPO,
       ref: DEPLOY_REF,
+      key: DEPLOY_KEY,
       'pre-deploy-local':
         `bash scripts/deployEnv.sh ${DEPLOY_USER}@${DEPLOY_HOST} ${DEPLOY_PATH}`,
       'post-deploy':
