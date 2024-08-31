@@ -9,6 +9,7 @@ const {
   DEPLOY_REPO,
   DEPLOY_REF,
   DEPLOY_KEY,
+  CLONE_KEY,
 } = process.env;
 
 module.exports = {
@@ -29,7 +30,7 @@ module.exports = {
       'pre-deploy-local':
         `bash scripts/deployEnv.sh ${DEPLOY_USER}@${DEPLOY_HOST} ${DEPLOY_PATH}`,
       'post-deploy':
-        'cd backend && pwd && npm ci && npm run build && pm2 startOrRestart ecosystem.config.js --env production',
+        `cd backend && pwd && npm ci && npm run build && GIT_SSH_COMMAND="ssh -i ${CLONE_KEY}" pm2 startOrRestart ecosystem.config.js --env production`,
     },
   },
 };
