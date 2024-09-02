@@ -1,3 +1,5 @@
 # Деплой приложения на сервер с использованием pm2
 
-Стартеркит проекта по автоматизации деплоя фронтенда и бэкенда при помощи pm2 (pm2 deploy)
+IP адрес 51.250.123.163
+Frontend https://mesto.study.ivanjsx.com
+Backend https://api.mesto.study.ivanjsx.com
