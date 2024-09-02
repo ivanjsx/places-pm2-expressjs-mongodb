@@ -20,8 +20,6 @@ module.exports = {
       path: DEPLOY_PATH,
       repo: DEPLOY_REPO,
       ref: DEPLOY_REF,
-      'pre-deploy-local':
-        `bash scripts/deployEnv.sh ${DEPLOY_USER}@${DEPLOY_HOST} ${DEPLOY_PATH}`,
       'post-deploy':
         'cd frontend && pwd && npm ci && npm run build',
     },
