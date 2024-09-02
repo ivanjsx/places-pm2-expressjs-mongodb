@@ -13,7 +13,7 @@ interface IUser extends Document {
 }
 
 interface IUserMethods {
-  toJSON(): string;
+  toJSON(): object;
 }
 
 interface IUserModel extends Model<IUser, {}, IUserMethods> {
@@ -78,7 +78,7 @@ userSchema.statics
   };
 
 userSchema.methods.toJSON = function toJSON() {
-  const obj = this.toObject();
+  const obj = this.toObject() as Partial<IUser>;
   delete obj.password;
   return obj;
 };

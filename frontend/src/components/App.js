@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, useHistory, Switch } from "react-router-dom";
+import { Route, useNavigate, Routes } from "react-router-dom";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
@@ -33,7 +33,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [email, setEmail] = React.useState("");
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
 
   React.useEffect(() => {
@@ -51,17 +51,17 @@ function App() {
         .then(([cardData, userData]) => {
             setCurrentUser(userData);
             setCards(cardData);
-            history.push("/");
+            navigate("/");
         })
         .catch((err) => {
           localStorage.removeItem("jwt");
           console.log(err);
         });
     }
-  }, [history]);
+  }, [navigate]);
 
 
-  
+
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);
   }
@@ -143,7 +143,7 @@ function App() {
       .then((res) => {
         setTooltipStatus("success");
         setIsInfoToolTipOpen(true);
-        history.push("/signin");
+        navigate("/signin");
       })
       .catch((err) => {
         setTooltipStatus("fail");
@@ -157,7 +157,7 @@ function App() {
       .then((res) => {
         setIsLoggedIn(true);
         setEmail(email);
-        history.push("/");
+        navigate("/");
       })
       .catch((err) => {
         setTooltipStatus("fail");
@@ -166,24 +166,23 @@ function App() {
   }
 
   function onSignOut() {
-    
+
     localStorage.removeItem("jwt");
     setIsLoggedIn(false);
-    
-    history.push("/signin");
+
+    navigate("/signin");
   }
 
   return (
-    
+
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page__content">
         <Header email={email} onSignOut={onSignOut} />
-        <Switch>
+        <Routes>
           {/*Роут / защищён HOC-компонентом ProtectedRoute*/}
           <ProtectedRoute
-            exact
             path="/"
-            component={Main}
+            element={<Main/>}
             cards={cards}
             onEditProfile={handleEditProfileClick}
             onAddPlace={handleAddPlaceClick}
@@ -200,7 +199,7 @@ function App() {
           <Route path="/signin">
             <Login onLogin={onLogin} />
           </Route>
-        </Switch>
+        </Routes>
         <Footer />
         <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
