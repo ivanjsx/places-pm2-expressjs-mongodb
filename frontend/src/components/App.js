@@ -24,7 +24,7 @@ function App() {
   const [selectedCard, setSelectedCard] = React.useState(null);
   const [cards, setCards] = React.useState([]);
 
-  
+
   const [currentUser, setCurrentUser] = React.useState({});
 
   const [isInfoToolTipOpen, setIsInfoToolTipOpen] = React.useState(false);
@@ -180,25 +180,31 @@ function App() {
         <Header email={email} onSignOut={onSignOut} />
         <Routes>
           {/*Роут / защищён HOC-компонентом ProtectedRoute*/}
-          <ProtectedRoute
-            path="/"
-            element={<Main/>}
-            cards={cards}
-            onEditProfile={handleEditProfileClick}
-            onAddPlace={handleAddPlaceClick}
-            onEditAvatar={handleEditAvatarClick}
-            onCardClick={handleCardClick}
-            onCardLike={handleCardLike}
-            onCardDelete={handleCardDelete}
-            loggedIn={isLoggedIn}
+          <Route
+            index
+            element={
+              <ProtectedRoute
+                component={Main}
+                cards={cards}
+                onEditProfile={handleEditProfileClick}
+                onAddPlace={handleAddPlaceClick}
+                onEditAvatar={handleEditAvatarClick}
+                onCardClick={handleCardClick}
+                onCardLike={handleCardLike}
+                onCardDelete={handleCardDelete}
+                loggedIn={isLoggedIn}
+              />
+            }
           />
           {/*Роут /signup и /signin не является защищёнными, т.е оборачивать их в HOC ProtectedRoute не нужно.*/}
-          <Route path="/signup">
-            <Register onRegister={onRegister} />
-          </Route>
-          <Route path="/signin">
-            <Login onLogin={onLogin} />
-          </Route>
+          <Route
+            path="/signup"
+            element={<Register onRegister={onRegister} />}
+          />
+          <Route
+            path="/signin"
+            element={<Login onLogin={onLogin} />}
+          />
         </Routes>
         <Footer />
         <EditProfilePopup
