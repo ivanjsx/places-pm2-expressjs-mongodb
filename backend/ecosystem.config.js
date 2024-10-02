@@ -14,7 +14,7 @@ const {
 module.exports = {
   apps: [
     {
-      name: 'mesto-backend',
+      name: 'places-backend',
       script: 'dist/app.js',
     },
   ],

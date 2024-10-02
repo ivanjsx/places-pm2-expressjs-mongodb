@@ -9,7 +9,7 @@ function Header ({onSignOut, email }) {
   }
   return (
     <header className="header page__section">
-      <img src={logoPath} alt="Логотип проекта Mesto" className="logo header__logo" />
+      <img src={logoPath} alt="Логотип проекта Places" className="logo header__logo" />
       <Link to="/">
         <div className="header__wrapper">
           <p className="header__user">{ email }</p>
