@@ -1,7 +1,7 @@
 {
-  "name": "web_canonicals_ru",
+  "name": "places-frontend",
   "version": "1.0.0",
-  "description": "Yandex.Praktikum canonical projects",
+  "description": "Backend API for the Places app",
   "main": "app.js",
   "scripts": {
     "build": "tsc",
@@ -9,7 +9,7 @@
     "dev": "ts-node-dev src/app.ts",
     "lint": "npx eslint src/**/*.ts"
   },
-  "author": "Yandex.Praktikum",
+  "author": "Ivan Shanin",
   "license": "ISC",
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
